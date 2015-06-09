@@ -217,6 +217,43 @@ CGSize dktabpage_getTextSize(UIFont *font,NSString *text, CGFloat maxWidth){
     }
 }
 
+- (void)showCircleDotBadge:(BOOL)b forItemIndex:(NSInteger)index
+{
+    if (index >= 0 && index < self.items.count) {
+        if (b) {
+            for (UIView *subView in self.subviews) {
+                if (subView.tag == 999 + index) {
+                    return;
+                }
+            }
+            
+            UIView *dotBadge = [[UIView alloc] init];
+            dotBadge.tag = 999 + index;
+            dotBadge.layer.cornerRadius = 5.f;
+            dotBadge.backgroundColor = [UIColor redColor];
+            
+            CGRect pageBarFrame = self.frame;
+            CGFloat percentX = (index + 0.6f) / self.items.count;
+            CGFloat x = ceilf(percentX * pageBarFrame.size.width);
+            CGFloat y = ceilf(0.1 * pageBarFrame.size.height);
+            dotBadge.frame = CGRectMake(x, y, 10, 10);
+            
+            [self addSubview:dotBadge];
+        } else {
+            for (UIView *subView in self.subviews) {
+                if (subView.tag == 999 + index) {
+                    [subView removeFromSuperview];
+                }
+            }
+        }
+    }
+}
+
+//- (void)showStringBadge:(NSString *)string forItemIndex:(NSInteger)index
+//{
+//    
+//}
+
 #pragma mark - private methods
 
 - (void)setupButtonStyleForButton:(UIButton *)button {

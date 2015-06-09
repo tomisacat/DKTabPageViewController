@@ -75,6 +75,22 @@
  */
 @property (nonatomic, strong) UIView *selectionIndicatorView;
 
+/**
+ *  Show a circle dot badge for specific item index, if index bigger than items count or negative it will do nothing.
+ *
+ *  @param b     YES for show, NO for hide
+ *  @param index item index to show circle dot badge.
+ */
+- (void)showCircleDotBadge:(BOOL)b forItemIndex:(NSInteger)index;
+
+///**
+// *  Show a string badge for specific item index, if index bigger than items count or negative it will do nothing.
+// *
+// *  @param string string to show
+// *  @param index  item index to show circle dot badge.
+// */
+//- (void)showStringBadge:(NSString *)string forItemIndex:(NSInteger)index;
+
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
